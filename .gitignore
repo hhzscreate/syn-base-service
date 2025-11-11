@@ -1,0 +1,108 @@
+# 操作系统生成的文件
+.DS_Store
+Thumbs.db
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+
+# IDE相关文件
+.idea/
+*.iml
+*.ipr
+*.iws
+.settings/
+.classpath
+.project
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.vscode/
+
+# 构建输出目录
+target/
+build/
+out/
+
+# 日志文件
+logs/
+*.log
+
+# Maven相关文件
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# 本地Maven仓库
+.m2/
+
+# Gradle相关文件
+.gradle/
+build/
+
+# 环境变量文件
+.env
+.env.local
+.env.*.local
+application-*.properties
+
+# 测试覆盖率报告
+coverage/
+jacoco.exec
+
+# 临时文件
+*.tmp
+*.temp
+*.cache
+
+# IDEA运行配置
+runConfigurations/
+
+# 数据库文件
+*.db
+*.sqlite
+*.sql
+
+# 加密密钥文件
+*.pem
+*.key
+*.cert
+*.jks
+*.keystore
+
+# 其他临时文件
+.svn/
+.hg/
+.git/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# 依赖目录（如果使用node.js）
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OSX
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json

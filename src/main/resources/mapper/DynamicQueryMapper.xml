@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.syn.mapper.DynamicQueryMapper">
+
+    <!-- 查询任意表的所有结果 -->
+    <select id="queryTable" resultType="java.util.Map">
+        SELECT
+            <foreach collection="columns" item="column" separator=", ">
+                ${column}
+            </foreach>
+        FROM ${tableName}
+    </select>
+
+    <!-- 条件查询任意表，List层为OR关系，Map层为AND关系 -->
+    <select id="queryWithConditions" resultType="java.util.Map">
+        SELECT
+            <foreach collection="columns" item="column" separator=", ">
+                ${column}
+            </foreach>
+        FROM ${tableName}
+        <where>
+            <foreach collection="conditions" item="condition" separator=" OR " open="(" close=")">
+                <foreach collection="condition" item="value" index="key" separator=" AND ">
+                    <choose>
+                        <when test="value == null">
+                            ${key} IS NULL
+                        </when>
+                        <when test="value instanceof java.util.List">
+                            ${key} IN
+                            <foreach collection="value" item="item" separator="," open="(" close=")">
+                                #{item}
+                            </foreach>
+                        </when>
+                        <otherwise>
+                            ${key} = #{value}
+                        </otherwise>
+                    </choose>
+                </foreach>
+            </foreach>
+        </where>
+    </select>
+
+    <!-- 分页查询任意表 -->
+    <select id="queryWithPagination" resultType="java.util.Map">
+        SELECT
+            <foreach collection="columns" item="column" separator=", ">
+                ${column}
+            </foreach>
+        FROM ${tableName}
+        LIMIT #{offset}, #{limit}
+    </select>
+
+    <!-- 获取表的总记录数 -->
+    <select id="getTotalCount" resultType="int">
+        SELECT COUNT(*) FROM ${tableName}
+    </select>
+
+</mapper>
